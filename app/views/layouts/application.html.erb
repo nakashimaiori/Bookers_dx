@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BookersDx</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <h4>Bookers</h4>
+    </div>
+    
+    <ul class="nav navbar-nav navbar-right">
+
+
+
+
+
+
+
+
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      
+    
+  
+
+
+    <% if user_signed_in? %>
+    <li class="">
+        <%= link_to 'Home', "#" %>
+      </li>
+      <li class="">
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      </li>
+      <li class="">
+        <%= link_to 'Users', "#" %>
+      </li>
+      <li class="">
+        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
+        <%= link_to 'Books', "#" %>
+      </li>
+    <% else %>
+    <li class="">
+        <%= link_to "Home", root_path %>
+      </li>
+      <li class="">
+        <%= link_to "About", home_about_path %>
+      </li>
+      <li class="">
+        <%= link_to "Signup", new_user_registration_path %>
+      </li>
+      <li class="">
+        <%= link_to "Login", new_user_session_path %>
+      </li>
+
+
+
+    <% end %>
+  </ul>
+</nav>
+
+  
+    <%= yield %>
+  </body>
+</html>
