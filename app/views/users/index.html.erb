@@ -1,2 +1,77 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+
+
+
+  <h3>User info</h3>
+  <table table-hover">
+    <tr>
+      <td>
+  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td><td></td>
+    </tr>
+    <tr>
+      <td><strong>name</strong></td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <td><strong>introduction</strong></td>
+      <td><%= @user.introduction %></td>
+    </tr>
+  </table>
+
+  <% if @user.id == current_user.id %>
+  <button type="button" class="btn btn-warning"><%= link_to "編集", edit_user_path(@user), class: "pull-left" %></button>
+  <% end %>
+
+
+<h3>New Book</h3>
+
+<%= form_for(@book, url:books_path) do |f| %>
+
+<% if @book.errors.any? %>
+    <%= @book.errors.count %>errors
+    <% @book.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_area :body %><br>
+  <%= f.submit 'Create Book' %>
+<% end %>
+    </div>
+
+
+    <div class="col-xs-9">
+     <div class="container">
+  <h1>Books</h1>
+  <table class="table table-hover">
+  <tr>
+  <th></th>
+    <th><strong>image</strong></th>
+    <th><strong>name</strong></th>
+    <th></th>
+    </tr>
+
+<tbody>
+<tr>
+  <% @users.each do |user| %>
+
+  <td></td>
+  <!-- ↓ただのuser -->
+    <td><%= attachment_image_tag user, :profile_image, :fill, 30, 30, format: 'jpeg', size: "30x30" ,class: "img-circle profile-img", fallback: "no_image.jpg" %></td>
+    <td><%= user.name %></td>
+    <!-- book_pathじゃなくてuser_path -->
+    <td><%= link_to "show", user_path(user.id) %></td>
+</tr>
+</tbody>
+  <% end %>
+</table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,71 @@
-<h1>Books#show</h1>
-<h2>タイトル</h2>
-<p><%= @book.title %></p>
-<h2>本文</h2>
-<p><%= @book.body %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
 
 
-<%= link_to "削除", book_path(@book), method: :delete %>
 
-<!-- あとでログインしてるユーザーしか消せないようにする。↑５章 -->
+  <h3>User info</h3>
+  <table table-hover">
+    <tr>
+      <td>
+  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td><td></td>
+    </tr>
+    <tr>
+      <td><strong>name</strong></td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <td><strong>introduction</strong></td>
+      <td><%= @user.introduction %></td>
+    </tr>
+  </table>
+
+  <% if @user.id == current_user.id %>
+  <button type="button" class="btn btn-warning"><%= link_to "編集", edit_user_path(@user), class: "pull-left" %></button>
+  <% end %>
+
+
+
+<h3>New Book</h3>
+
+<%= form_for(@book, url:books_path) do |f| %>
+
+<% if @book.errors.any? %>
+    <%= @book.errors.count %>errors
+    <% @book.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_area :body %><br>
+  <%= f.submit 'Create Book' %>
+<% end %>
+    </div>
+
+
+
+
+<div class="col-xs-9">
+<div class="container">
+  <h1>Book detail</h1>
+  <table class="table table-hover">
+<tr>
+
+  <td><%= attachment_image_tag @user, :profile_image, :fill, 30, 30, format: 'jpeg', size: "30x30" ,class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+    <td><%= @user_book.title %></td>
+    <td><%= @user_book.body %></td>
+
+  <% if @user_book.user == current_user %>
+    <td><%= link_to "編集", edit_book_path(@user_book.id) %></td>
+    <td><%= link_to "削除", book_path(@user_book), method: :delete %></td>
+  <% end %>
+    <!-- あとでログインしてるユーザーしか消せないようにする。↑５章 -->
+   
+</tr>
+</table>
+</div>
+</div>
+</div>

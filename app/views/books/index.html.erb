@@ -1,32 +1,32 @@
 
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
 
-<h1>Books</h1>
 
-<div class="box">
-	<table>
-	<tr>
-	<th></th>
-  	<th><strong>title</strong></th>
-  	<th><strong>body</strong></th>
-  	<th></th>
-  	</tr>
 
-<tbody>
-<tr>
-	<% @books.each do |book| %>
+  <h3>User info</h3>
+  <table table-hover">
+    <tr>
+      <td>
+  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td><td></td>
+    </tr>
+    <tr>
+      <td><strong>name</strong></td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <td><strong>introduction</strong></td>
+      <td><%= @user.introduction %></td>
+    </tr>
+  </table>
 
-	<td></td>
-  	<td><%= book.title %></td>
-  	<td><%= book.body %></td>
-  	<td></td>
-</tr>
-</tbody>
-	<% end %>
-</table>
-</div>
-  
+  <% if @user.id == current_user.id %>
+  <button type="button" class="btn btn-warning"><%= link_to "編集", edit_user_path(@user), class: "pull-left" %></button>
+  <% end %>
 
-<h1>New Book</h1>
+
+<h3>New Book</h3>
 
 <%= form_for(@book, url:books_path) do |f| %>
 
@@ -43,5 +43,34 @@
   <%= f.text_area :body %><br>
   <%= f.submit 'Create Book' %>
 <% end %>
+    </div>
 
 
+    <div class="col-xs-9">
+     <div class="container">
+  <h1>Books</h1>
+  <table class="table table-hover">
+  <tr>
+  
+    <th><strong>title</strong></th>
+    <th><strong>opinion</strong></th>
+    <th></th>
+    
+    </tr>
+
+<tbody>
+<tr>
+  <% @books.each do |book| %>
+<!-- book.user迷った↓ -->
+  <td><%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, format: 'jpeg', size: "30x30" ,class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+    <td><%= link_to book.title, book_path(book.id)%></td>
+    <td><%= book.body %></td>
+    
+</tr>
+</tbody>
+  <% end %>
+</table>
+      </div>
+    </div>
+  </div>
+</div>
