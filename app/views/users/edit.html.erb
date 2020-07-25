@@ -12,6 +12,16 @@
                       <h2 class="form-header-title">プロフィール編集</h2>
                     </div>
                     <div class="form-body">
+
+
+                      <% if @user.errors.any? %>
+                      <%= @user.errors.count %>errors
+                        <% @user.errors.full_messages.each do |message| %>
+                        <%= message %>
+                        <% end %>
+                      <% end %>
+
+
                       <!-- ここにform_forを追加します -->
                       <%= form_for(@user) do |f| %>
                       <div class="form-group has-icon">

@@ -3,6 +3,11 @@
   <div class="row">
     <div class="col-xs-3">
 
+<% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
 
   <h3>User info</h3>
@@ -21,9 +26,9 @@
     </tr>
   </table>
 
-  <% if @user.id == current_user.id %>
+  
   <button type="button" class="btn btn-warning"><%= link_to "編集", edit_user_path(@user), class: "pull-left" %></button>
-  <% end %>
+  
 
 
 <h3>New Book</h3>

@@ -23,7 +23,15 @@ Things you may want to cover:
 
 * ...
 
-showページの変数１、２、３
+bookers2  2回目作成
+
+躓いたポイント
+
+showページの変数３つ必要
 １投稿者@user
 ２Book.new@book
 3urlと同じ投稿　@user_book
+
+
+correct_user定義
+

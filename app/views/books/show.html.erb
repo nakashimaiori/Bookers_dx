@@ -3,6 +3,11 @@
     <div class="col-xs-3">
 
 
+<% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
   <h3>User info</h3>
   <table table-hover">
@@ -20,9 +25,9 @@
     </tr>
   </table>
 
-  <% if @user.id == current_user.id %>
+  
   <button type="button" class="btn btn-warning"><%= link_to "編集", edit_user_path(@user), class: "pull-left" %></button>
-  <% end %>
+  
 
 
 
@@ -54,7 +59,7 @@
   <table class="table table-hover">
 <tr>
 
-  <td><%= attachment_image_tag @user, :profile_image, :fill, 30, 30, format: 'jpeg', size: "30x30" ,class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+  <td><%= attachment_image_tag @user, :profile_image, :fill, 30, 30, format: 'jpeg', size: "30x30" ,class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %><br><br><%= link_to @user.name, user_path(@user) %></td>
     <td><%= @user_book.title %></td>
     <td><%= @user_book.body %></td>
 
