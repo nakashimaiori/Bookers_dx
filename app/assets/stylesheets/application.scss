@@ -13,9 +13,27 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";  
-@import "bootstrap";            
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 .flash {
  color: red;
 }
+
+.bookers{
+ color: #fff;
+}
+
+.navbar {
+  padding:0 80px;
+}
+
+.top {
+  margin: 30px 80px 0 80px;
+}
+
+.about {
+  display: inline-block;
+  font-size: 40px;
+}
+
