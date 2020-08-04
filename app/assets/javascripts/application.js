@@ -17,8 +17,6 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-var title = "javascriptsが使えました"
-alert(title);
 
 $(document).ready(function () {
   $('.jquery').on('click', function(){
@@ -34,8 +32,8 @@ $(document).ready(function () {
     speed : 1000,
     // easingの種類
     easing : 'easeOutQuart',
-    // ナビゲーションの形("block" or "bubble")
-    navType : 'block',
+    // ナビゲーションの形("block" or "bubble←ドット的なん")
+    navType : 'bubble',
     // 子要素の種類("div" or "img")
     childrenElementType : 'div',
     // ナビゲーション矢印の表示(trueで表示)
